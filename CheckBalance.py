@@ -30,13 +30,13 @@ class BalanceCheck(object):
     
     def get_to(self, updated_blockchain, sender):
 
-        _from = []
+        _to = []
         for i in range(1, len(updated_blockchain)):
             if updated_blockchain[i].data['to'] == sender:
-                _from.append(updated_blockchain[i])
+                _to.append(updated_blockchain[i])
             else:
                 pass
-        return _from
+        return _to
         
  
     def check(self, last_blockchain, sender, payment):
@@ -51,5 +51,3 @@ class BalanceCheck(object):
         else:
             return 'insufficient funds'
         
-        
-
