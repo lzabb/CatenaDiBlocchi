@@ -3,7 +3,7 @@
 """
 Created on Wed Jan  3 22:06:43 2018
 
-@author: lzabb
+@author: lzabb autentication withprivate key, transaction logic, rand wallet trans, nodes competiontion con proof of work
 """
 
 import datetime as date
@@ -18,9 +18,9 @@ class Engine(object):
     def __init__(self):
   
         self.genesis_block =  Block(0, date.datetime.now(), 
-                                    {'from' : 'GOD',
+                                    [{'from' : 'GOD',
                                      'to' : 'Jesus',
-                                     'amount' : 1000000}, '0')
+                                     'amount' : 1000000}], '0')
         self.chain = [self.genesis_block]
         self.wallets = self.gen_wallet() #forse questo non serve neanche
 
@@ -30,6 +30,7 @@ class Engine(object):
         wallets_keys = []
         for i in np.arange(10): # set how many wallets
             wallets_keys.append(Wallet().public_key)
+        wallets_keys.append('toni')
         return wallets_keys
 
    
@@ -44,15 +45,12 @@ class Engine(object):
     
     def payment(self, last_chain, sender, receiver, amount):
     
-        transaction = {'from' : sender, 'to' : receiver, 'amount' : amount}
+        transaction = [{'from' : sender, 'to' : receiver, 'amount' : amount}]
         status = BalanceCheck().check(last_chain, sender, amount)
         if status == 'transaction accepted':
+            print 'Transaction accepted'
             return transaction
         else:
-            transaction = {}
             return status
-        
-        
-            
-            
     
+         
