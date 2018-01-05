@@ -24,10 +24,8 @@ class BalanceCheck(object):
     
     def get_amount(self, _list):
         
-        _amount = []
-        for i in range(0, len(_list)):
-            _amount.append(_list[i]['amount'])
-        return _amount
+        return [_list[i]['amount'] for i in range(0, len(_list))]
+
     
     
     def get_to(self, updated_blockchain, sender):
@@ -53,3 +51,5 @@ class BalanceCheck(object):
             return 'transaction accepted'
         else:
             return 'insufficient funds'
+        
+    
