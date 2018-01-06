@@ -7,7 +7,6 @@ Created on Wed Jan  3 22:06:43 2018
 """
 
 import datetime as date
-import numpy as np
 from Blocks import Block
 from portafoglio import Wallet
 from CheckBalance import BalanceCheck
