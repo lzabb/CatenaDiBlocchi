@@ -14,29 +14,29 @@ class BalanceCheck(object):
         _from = []
         for i in range(0, len(updated_blockchain)): #change when adding real genesis block
             #print updated_blockchain
-            if updated_blockchain[i].data['from'] == sender:
-                _from.append(updated_blockchain[i])
-            else:
-                pass
+            for d in updated_blockchain[i].data:
+                if d['from'] == sender:
+                    _from.append(d)
+                else:
+                    pass
         return _from
   
     
     def get_amount(self, _list):
         
-        _amount = []
-        for i in range(0, len(_list)):
-            _amount.append(_list[i].data['amount'])
-        return _amount
+        return [_list[i]['amount'] for i in range(0, len(_list))]
+
     
     
     def get_to(self, updated_blockchain, sender):
 
         _to = []
         for i in range(0, len(updated_blockchain)): #change when adding real genesis block
-            if updated_blockchain[i].data['to'] == sender:
-                _to.append(updated_blockchain[i])
-            else:
-                pass
+            for d in updated_blockchain[i].data:
+                if d['to'] == sender:
+                    _to.append(d)
+                else:
+                    pass
         return _to
         
  
@@ -46,11 +46,10 @@ class BalanceCheck(object):
         amount_received = self.get_amount(self.get_to(last_blockchain, sender))
         
         balance = sum(amount_received) - sum(amount_sent)
-
+        print 'Balance of', sender,':', balance,'.'
         if balance >= payment:
             return 'transaction accepted'
         else:
             return 'insufficient funds'
         
-        
-
+    

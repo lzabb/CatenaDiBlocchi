@@ -5,8 +5,9 @@ Created on Thu Dec 28 19:22:05 2017
 
 @author: lzabb
 """
+
 import numpy as np
-from chain_engine import Engine 
+from chain_engine import Engine, Round_ 
 
 
 e = Engine()
@@ -18,7 +19,7 @@ blockchain = e.chain
 previous_block = blockchain[0]
 
 for i in range (0, len(e.wallets)):
-    trans = e.payment(blockchain, 'Jesus', e.wallets[i], 10)
+    trans = e.payment(blockchain, 'Jesus', e.wallets[i], 20)
     block_to_add = e.next_block(previous_block, trans)
     blockchain.append(block_to_add)
     previous_block = block_to_add
@@ -27,13 +28,18 @@ for i in range (0, len(e.wallets)):
 
 #further transactions added to the blockchain
     
-transaction =[{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(1,10, 1))},
-              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(1,10, 1))},
-              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(1,10, 1))},
-              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(1,10, 1))}]   
+transactions_list =[
+              [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(9,10, 1))},
+              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}],
+              [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))},
+              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}], 
+               [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))},
+              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}],
+              [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))},
+              {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}]
+              ] #FOUR rounds of transactions. toni starts with 10 (from Jesus), zabba with 0  
     
-for i in range(0, len(transaction)):
-    block2add = e.next_block(previous_block, transaction[i])
-    blockchain.append(block2add)
-    previous_block = block2add
-    print block2add.index, block2add.hash
+# The following, for each round checks first if the transactions for each 'from' have the required balance to choose which transactions to accept, then the accepted transactions go in the next block.          
+[Round_().round_(transactions, blockchain) for transactions in transactions_list]
+
+
