@@ -12,8 +12,7 @@ class BalanceCheck(object):
     def get_from(self, updated_blockchain, sender):
         
         _from = []
-        for i in range(0, len(updated_blockchain)): #change when adding real genesis block
-            #print updated_blockchain
+        for i in range(0, len(updated_blockchain)): 
             for d in updated_blockchain[i].data:
                 if d['from'] == sender:
                     _from.append(d)

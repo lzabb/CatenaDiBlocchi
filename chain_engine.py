@@ -71,7 +71,8 @@ class Round_(object):
                 Round for new block begins
                 '''
         accepted_transactions = [] 
-        # need to isolate all the from accounts to see if they have the balance to do THE POSSIBLY MANY transactions they asked
+        # need to isolate all the from accounts to see if they have the balance 
+        # to do THE POSSIBLY MANY transactions they asked
         from_list = self.extract_name(transactions, 'from')
         print 'Senders list:', from_list,'.'
         for from_i in from_list:
