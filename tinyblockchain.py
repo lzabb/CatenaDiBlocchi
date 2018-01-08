@@ -7,7 +7,8 @@ Created on Thu Dec 28 19:22:05 2017
 """
 
 import numpy as np
-from chain_engine import Engine, Round_ 
+from chain_engine import Engine
+from node_engine import Round_ 
 
 
 e = Engine()
@@ -19,7 +20,7 @@ blockchain = e.chain
 previous_block = blockchain[0]
 
 for i in range (0, len(e.wallets)):
-    trans = e.payment(blockchain, 'Jesus', e.wallets[i], 20)
+    trans = e.payment(blockchain, 'Jesus', e.wallets[i], 15)
     block_to_add = e.next_block(previous_block, trans)
     blockchain.append(block_to_add)
     previous_block = block_to_add
@@ -27,6 +28,7 @@ for i in range (0, len(e.wallets)):
 
 
 #further transactions added to the blockchain
+# Mechanism s.t. once 10 more transactions are requested they form  an element of transactions_list, and they are broadcasted
     
 transactions_list =[
               [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(9,10, 1))},
@@ -37,7 +39,7 @@ transactions_list =[
               {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}],
               [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))},
               {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}]
-              ] #FOUR rounds of transactions. toni starts with 10 (from Jesus), zabba with 0  
+              ] #FOUR rounds of transactions. toni starts with 15 (from Jesus), zabba with 0  
     
 # The following, for each round checks first if the transactions for each 'from' have the required balance to choose which transactions to accept, then the accepted transactions go in the next block.          
 [Round_().round_(transactions, blockchain) for transactions in transactions_list]
