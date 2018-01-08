@@ -12,7 +12,7 @@ from CheckBalance import BalanceCheck
 class Round_(object):
          
     def extract_name(self,list_of_dictionaries, name):
-            name_list_loose = [list_of_dictionaries[d][name] for d in range(0,len(list_of_dictionaries))]
+            name_list_loose = [dictionary[name] for dictionary in list_of_dictionaries]
             name_list = [name_list_loose[0]]
             for name_ in name_list_loose:
                 if name_list.count(name_) >= 1:

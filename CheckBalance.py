@@ -9,41 +9,25 @@ Created on Wed Jan  3 17:14:10 2018
 class BalanceCheck(object):
     
 
-    def get_from(self, updated_blockchain, sender):
-        
-        _from = []
-        for i in range(0, len(updated_blockchain)): #change when adding real genesis block
+    def get_(self, updated_blockchain, sender, dictionary_item):    
+        get_ = []
+        for block in updated_blockchain: #change when adding real genesis block
             #print updated_blockchain
-            for d in updated_blockchain[i].data:
-                if d['from'] == sender:
-                    _from.append(d)
+            for dictionary in block.data:
+                if dictionary[dictionary_item] == sender:
+                    get_.append(dictionary)
                 else:
                     pass
-        return _from
+        return get_
   
     
-    def get_amount(self, _list):
-        
-        return [_list[i]['amount'] for i in range(0, len(_list))]
-
-    
-    
-    def get_to(self, updated_blockchain, sender):
-
-        _to = []
-        for i in range(0, len(updated_blockchain)): #change when adding real genesis block
-            for d in updated_blockchain[i].data:
-                if d['to'] == sender:
-                    _to.append(d)
-                else:
-                    pass
-        return _to
+    def get_2(self, dictionaries, amount):        
+        return [dictionary[amount] for dictionary in dictionaries]
         
  
     def check(self, last_blockchain, sender, payment):
-        
-        amount_sent = self.get_amount(self.get_from(last_blockchain, sender))
-        amount_received = self.get_amount(self.get_to(last_blockchain, sender))
+        amount_sent = self.get_2(self.get_(last_blockchain, sender, 'from'), 'amount')
+        amount_received = self.get_2(self.get_(last_blockchain, sender, 'to'), 'amount')
         
         balance = sum(amount_received) - sum(amount_sent)
         print 'Balance of', sender,':', balance,'.'
