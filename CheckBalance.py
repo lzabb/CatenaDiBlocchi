@@ -30,7 +30,7 @@ class BalanceCheck(object):
     def get_to(self, updated_blockchain, sender):
 
         _to = []
-        for i in range(0, len(updated_blockchain)): #change when adding real genesis block
+        for i in range(0, len(updated_blockchain)): 
             for d in updated_blockchain[i].data:
                 if d['to'] == sender:
                     _to.append(d)
