@@ -19,8 +19,8 @@ blockchain = e.chain
 
 previous_block = blockchain[0]
 
-for i in range (0, len(e.wallets)):
-    trans = e.payment(blockchain, 'Jesus', e.wallets[i], 15)
+for wallet in e.wallets:
+    trans = e.payment(blockchain, 'Jesus', wallet, 15)
     block_to_add = e.next_block(previous_block, trans)
     blockchain.append(block_to_add)
     previous_block = block_to_add
@@ -30,7 +30,7 @@ for i in range (0, len(e.wallets)):
 #further transactions added to the blockchain
 # Mechanism s.t. once 10 more transactions are requested they form  an element of transactions_list, and they are broadcasted
     
-transactions_list =[
+transactions_list =[ 
               [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(9,10, 1))},
               {'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))}, {'from' : 'zabba', 'to': 'toni', 'amount' : int(np.random.randint(0,10, 1))}],
               [{'from' : 'toni', 'to': 'zabba', 'amount' : int(np.random.randint(0,10, 1))},
