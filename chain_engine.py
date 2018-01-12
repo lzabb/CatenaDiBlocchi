@@ -7,7 +7,6 @@ Created on Wed Jan  3 22:06:43 2018
 """
 
 import datetime as date
-import numpy as np
 from Blocks import Block
 from portafoglio import Wallet
 from CheckBalance import BalanceCheck
@@ -28,7 +27,7 @@ class Engine(object):
     def gen_wallet(self):
         
         wallets_keys = [Wallet().public_key for _ in range(10)]
-        wallets_keys.append('toni')
+        wallets_keys.append('toni') # anche questo da togliere 
         return wallets_keys
 
    

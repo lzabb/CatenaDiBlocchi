@@ -5,7 +5,6 @@ Created on Sun Jan 07 19:26:58 2018
 @author: Mas
 """
 
-import numpy as np
 from chain_engine import Engine
 from CheckBalance import BalanceCheck
 
