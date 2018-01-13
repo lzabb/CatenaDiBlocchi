@@ -37,5 +37,3 @@ class BalanceCheck(object):
             return 'transaction accepted'
         else:
             return 'insufficient funds'
-        
-    

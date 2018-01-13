@@ -18,6 +18,7 @@ class Round_(object):
                     pass
                 else:
                     name_list.append(name_)
+            print name_list
             return name_list
         
     def round_(self, transactions, blockchain):
