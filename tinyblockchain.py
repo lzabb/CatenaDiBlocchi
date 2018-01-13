@@ -33,9 +33,10 @@ for wallet in e.wallets_keys:
     
 
 transactions_list = [e.payment(blockchain, random.choice(e.wallets_keys),
-                                      random.choice(e.wallets_keys),
-                                      int(np.random.randint(0,10, 1)))
-                     for i in range(4)]
+                               random.choice(e.wallets_keys),
+                               int(np.random.randint(1,10, 1)))
+                     for i in range(4)
+                     ]
     
 # The following, for each round checks first if the transactions for each 'from' have the required balance to choose which transactions to accept, then the accepted transactions go in the next block.          
 [Round_().round_(transactions, blockchain) for transactions in transactions_list]
