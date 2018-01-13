@@ -10,18 +10,21 @@ from CheckBalance import BalanceCheck
 
 class Round_(object):
          
+    
     def extract_name(self,list_of_dictionaries, name):
-            name_list_loose = [dictionary[name] for dictionary in list_of_dictionaries]
-            name_list = [name_list_loose[0]]
-            for name_ in name_list_loose:
-                if name_list.count(name_) >= 1:
-                    pass
-                else:
-                    name_list.append(name_)
-            print name_list
-            return name_list
         
+        name_list_loose = [dictionary[name] for dictionary in list_of_dictionaries]
+        name_list = [name_list_loose[0]]
+        for name_ in name_list_loose:
+            if name_list.count(name_) >= 1:
+                pass
+            else:
+                name_list.append(name_)
+        return name_list
+  
+      
     def round_(self, transactions, blockchain):
+       
         print ''' 
                 Round for new block begins
                 '''
