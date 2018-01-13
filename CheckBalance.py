@@ -10,6 +10,7 @@ class BalanceCheck(object):
     
 
     def get_(self, updated_blockchain, sender, dictionary_item):    
+     
         get_ = []
         for block in updated_blockchain: 
             for dictionary in block.data:
@@ -19,12 +20,14 @@ class BalanceCheck(object):
                     pass
         return get_
   
-    # eleganza
+
     def get_2(self, dictionaries, amount):        
+        
         return [dictionary[amount] for dictionary in dictionaries]
         
  
     def check(self, last_blockchain, sender, payment):
+   
         amount_sent = self.get_2(self.get_(last_blockchain, sender, 'from'), 'amount')
         amount_received = self.get_2(self.get_(last_blockchain, sender, 'to'), 'amount')
         
