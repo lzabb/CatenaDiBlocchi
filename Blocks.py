@@ -12,6 +12,7 @@ class Block(object):
     
     
     def __init__(self, index, timestamp, data, previous_hash):
+      
         self.index = index
         self.timestamp = timestamp
         self.data = data
@@ -20,6 +21,7 @@ class Block(object):
   
           
     def hash_block(self):
+      
         sha = hasher.sha256(str(self.index) +
                             str(self.timestamp) + 
                             str(self.data) + 
