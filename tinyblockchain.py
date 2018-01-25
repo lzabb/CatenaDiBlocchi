@@ -32,11 +32,13 @@ for wallet in e.wallets_keys:
 # Mechanism s.t. once 10 more transactions are requested they form  an element of transactions_list, and they are broadcasted
     
 
-transactions_list = [e.payment(blockchain, random.choice(e.wallets_keys),
-                               random.choice(e.wallets_keys),
+transactions_list = [e.payment(blockchain, random.choice(e.wallets_keys),   # e.payment checks balance for the single requested transaction from sender.
+                               random.choice(e.wallets_keys),               # Later in Round_().round_ the balance given all requests from sender will be chekced.
                                int(np.random.randint(1,10, 1)))
                      for i in range(4)
                      ]
 print transactions_list    
 # The following, for each round checks first if the transactions for each 'from' have the required balance to choose which transactions to accept, then the accepted transactions go in the next block.          
 [Round_().round_(transactions, blockchain) for transactions in transactions_list]
+
+# Add plot of coins movement?

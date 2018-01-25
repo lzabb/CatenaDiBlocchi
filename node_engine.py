@@ -46,7 +46,7 @@ class Round_(object):
             else:
                 for t in transactions:
                     if from_i == t['from']:
-                        accepted_transactions.append({'from' : t['from'], 'to' : t['to'], 'amount' : t['amount']})
+                        accepted_transactions.append(t)
                     else:
                         pass
             
