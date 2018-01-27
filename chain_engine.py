@@ -29,7 +29,7 @@ class Engine(object):
     
     def gen_wallets(self):
          
-        return [Wallet() for _ in range(10)]
+        return [Wallet() for _ in range(5)]
                
   
     def wallet_to_agents(self, wallets):
@@ -48,13 +48,13 @@ class Engine(object):
     
     def payment(self, last_chain, sender, receiver, amount):
     
-        transaction = [{'from' : sender, 
+        transaction = {'from' : sender, 
                         'to' : receiver, 
                         'amount' : amount, 
-                        'stamp' : time.time()}]
+                        'stamp' : time.time()}
         status = BalanceCheck().check(last_chain, sender, amount)
         if status == 'transaction accepted':
             print 'Transaction accepted'
             return transaction
         else:
-            return status
+            print status

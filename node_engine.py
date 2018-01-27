@@ -8,26 +8,14 @@ Created on Sun Jan 07 19:26:58 2018
 from chain_engine import Engine
 from CheckBalance import BalanceCheck
 
+
 class Round_(object):
          
-    
-    def extract_name(self,list_of_dictionaries, name):
-        
-        name_list_loose = [dictionary[name] for dictionary in list_of_dictionaries]
-        name_list = [name_list_loose[0]]
-        for name_ in name_list_loose:
-            if name_list.count(name_) >= 1:
-                pass
-            else:
-                name_list.append(name_)
-        return name_list
-  
-      
-    def round_(self, transactions, blockchain):
-       
+                  
+    def round_(self, transactions, blockchain):       
         print ''' 
-                Round for new block begins
-                '''
+              Round for new block begins
+              '''
         accepted_transactions = [] 
         # need to isolate all the from accounts to see if they have the balance to do THE POSSIBLY MANY transactions they asked
         from_list = self.extract_name(transactions, 'from')
@@ -55,7 +43,18 @@ class Round_(object):
             block2add = Engine().next_block(previous_block, accepted_transactions)
             blockchain.append(block2add)
             previous_block = block2add
-            print 'Block #', block2add.index,' Hash:', block2add.hash,'.'
+            print 'Block #', block2add.index,'. Hash:', block2add.hash,'.'
         else:
             pass
+  
+
+    def extract_name(self, list_of_dictionaries, name):        
+        name_list_loose = [dictionary[name] for dictionary in list_of_dictionaries]
+        name_list = [name_list_loose[0]]
+        for name_ in name_list_loose:
+            if name_list.count(name_) >= 1:
+                pass
+            else:
+                name_list.append(name_)
+        return name_list
   
