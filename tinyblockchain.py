@@ -31,7 +31,8 @@ for wallet in e.wallets_keys:
 #further transactions added to the blockchain
 # Mechanism s.t. once 10 more transactions are requested they form  an element of transactions_list, and they are broadcasted
  
-Agents = e.wallet_to_agents(e.wallets) # Create 3 transactions for each agent with an increasing random index 't' that we use to order transactions
+Agents = e.wallet_to_agents(e.wallets)
+# Create 3 transactions for each agent with an increasing random index 't' that we use to order transactions
 unordered_transactions = [ { 'transaction' : e.payment(blockchain, agent.portafoglio.public_key, random.choice(e.wallets_keys),  int(np.random.randint(1,10, 1))),
                              't' : agent.stamp() }      for i in range(3)  for agent in Agents]
 ordered_transactions = sorted(unordered_transactions, key = lambda x: x.get('t',"")) # Put transactions in order /  contruct Markov chain
